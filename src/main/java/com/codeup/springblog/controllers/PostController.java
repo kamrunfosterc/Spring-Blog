@@ -14,21 +14,28 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String specificPosts(@PathVariable int id){
+    public String userIdPosts(@PathVariable int id){
         return "View individual post " + id+" !";
     }
 
 
-    @GetMapping("/posts/create")
+    @GetMapping("/post/create")
     @ResponseBody
     public String viewAPost(){
         return "View form for creating a post";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
+    //todo my version
+    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
     @ResponseBody
     public String createAPost(){
         return "Create new Post";
+    }
+
+    @PostMapping("/posting/create")
+    @ResponseBody
+    public String createPost(){
+        return "create a new post";
     }
 
 

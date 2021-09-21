@@ -14,31 +14,32 @@ public class MathController {
         return 3+4;
     }
 
-    @GetMapping("/add/3/and/4")
+    @GetMapping("/subtract/3/from/10")
     @ResponseBody // tells it that it'll return
     public long tenMinusThree(){
         return 10-3;
     }
 
-    @GetMapping("/add/3/and/4")
+    @GetMapping("/multiply/4/and/5")
     @ResponseBody // tells it that it'll return
     public long fourTimesFive(){
         return 4*5;
     }
 
-    @GetMapping("/add/3/and/4")
+    @GetMapping("/divide/6/by/3")
     @ResponseBody // tells it that it'll return
     public long  sixDividedByThree(){
+//        int answer = 6/3;// if we wanted to return string and concatinate
+//        return "6 / 3 = "+answer;
         return 6/3;
     }
 
-//    @GetMapping("/multi/{x_value}/and/{y_value}")
-//    @ResponseBody
-//    public long multiUserChoice(){
-//        int x_value;
-//        int y_value;
-//        return ;
-//    }
-    //TRY THIS ONE AGAIN, NOT WORKING
+    //used when we don't know any variables
+    @GetMapping("/multi/{x_value}/and/{y_value}")
+    @ResponseBody
+    public int multiUserChoice(@PathVariable int x_value, @PathVariable int y_value){
+        return x_value * y_value;
+    }
+
 
 }
