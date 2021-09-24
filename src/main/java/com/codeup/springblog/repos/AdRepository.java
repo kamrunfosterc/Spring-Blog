@@ -8,3 +8,7 @@
 //    Ad getByDescription(String description);// property should match lhs, uses java reflections
 //
 //}
+
+
+
+
