@@ -12,7 +12,7 @@ import java.util.Random;
 @Controller //first thing we do here
 public class HelloController {
 
-    @GetMapping("/hello")// sim to a doGet
+    @GetMapping("/hello")// sim to a doGet, define route controller responds to request
     @ResponseBody // tells it that it'll return
     public String helloFromSpring(){
         return "Hello from the world of Spring Boot";

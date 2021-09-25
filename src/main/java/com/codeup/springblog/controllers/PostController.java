@@ -80,44 +80,75 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+//
+//    @Controller
+//    public class PostController {
+//
+//        @GetMapping("/posts")
+//        public String showPosts(Model model) {
+//            List<Post> allPosts = new ArrayList<>();
+//
+//            allPosts.add(new Post("post!", "post1 body"));
+//            allPosts.add(new Post("post@", "post2 body"));
+//
+//            model.addAttribute("posts", allPosts);
+//            return "post/index";
+//        }
+//
+//        @GetMapping("/posts/{id}")
+//        public String showOnePost(@PathVariable int id, Model model) {
+//
+//            Post post = new Post("Fun title", "Fun body");
+//            model.addAttribute("postId", id);
+//            model.addAttribute("post", post);
+//
+//            return "post/show";
+//        }
+//
+//        @GetMapping("/posts/create")
+//        @ResponseBody
+//        public String showCreatePostForm() {
+//            return "view form for creating a new post";
+//        }
+//
+//        @PostMapping("/posts/create")
+//        @ResponseBody
+//        public String createPost() {
+//            return "create a new post";
+//        }
+//
+//    }
 
-    @Controller
-    public class PostController {
+// TODO Personally redoing exercise for practice
+//Create a PostController class.
+// This controller should return strings for the following routes
+// that describe what will ultimately be there.
 
-        @GetMapping("/posts")
-        public String showPosts(Model model) {
-            List<Post> allPosts = new ArrayList<>();
+@Controller
+public class PostController {
 
-            allPosts.add(new Post("post!", "post1 body"));
-            allPosts.add(new Post("post@", "post2 body"));
-
-            model.addAttribute("posts", allPosts);
-            return "post/index";
-        }
-
-        @GetMapping("/posts/{id}")
-        public String showOnePost(@PathVariable int id, Model model) {
-
-            Post post = new Post("Fun title", "Fun body");
-            model.addAttribute("postId", id);
-            model.addAttribute("post", post);
-
-            return "post/show";
-        }
-
-        @GetMapping("/posts/create")
-        @ResponseBody
-        public String showCreatePostForm() {
-            return "view form for creating a new post";
-        }
-
-        @PostMapping("/posts/create")
-        @ResponseBody
-        public String createPost() {
-            return "create a new post";
-        }
-
+    @GetMapping("/posts")
+    @ResponseBody
+    public String showIndex(){
+        return "posts index page";
     }
+    @GetMapping("/posts/{id}")
+    @ResponseBody
+    public String individualPost(){
+        return "view an individual post";
+    }
+    @GetMapping("/posts/create")
+    @ResponseBody
+    public String createPostForm(){
+        return "view the form for creating a post";
+    }
+    @PostMapping("/posts/create")
+    @ResponseBody
+    public String createNewPost(){
+        return "create a new post";
+    }
+
+}
 
 
 
