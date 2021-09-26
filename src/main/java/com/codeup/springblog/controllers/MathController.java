@@ -5,41 +5,92 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-@Controller
-public class MathController {
+//@Controller
+//public class MathController {
+//
+//    @GetMapping("/add/3/and/4")
+//    @ResponseBody // tells it that it'll return
+//    public long threePlusFour(){
+//        return 3+4;
+//    }
+//
+//    @GetMapping("/subtract/3/from/10")
+//    @ResponseBody // tells it that it'll return
+//    public long tenMinusThree(){
+//        return 10-3;
+//    }
+//
+//    @GetMapping("/multiply/4/and/5")
+//    @ResponseBody // tells it that it'll return
+//    public long fourTimesFive(){
+//        return 4*5;
+//    }
+//
+//    @GetMapping("/divide/6/by/3")
+//    @ResponseBody // tells it that it'll return
+//    public long  sixDividedByThree(){
+////        int answer = 6/3;// if we wanted to return string and concatinate
+////        return "6 / 3 = "+answer;
+//        return 6/3;
+//    }
+//
+//    //used when we don't know any variables
+//    @GetMapping("/multi/{x_value}/and/{y_value}")
+//    @ResponseBody
+//    public int multiUserChoice(@PathVariable int x_value, @PathVariable int y_value){
+//        return x_value * y_value;
+//    }
+//
+//
+//}
 
+
+// TODO: 9/25/21 redoing Mathcontroller exercise
+//This controller should listen for requests for several routes that correspond to basic arithmetic operations
+// and produce the result of the arithmetic.
+
+public class MathController {
     @GetMapping("/add/3/and/4")
-    @ResponseBody // tells it that it'll return
-    public long threePlusFour(){
+    @ResponseBody
+    public int addThreeAndFour(){
         return 3+4;
     }
-
     @GetMapping("/subtract/3/from/10")
-    @ResponseBody // tells it that it'll return
-    public long tenMinusThree(){
+    @ResponseBody
+    public int subThreeAndTen(){
         return 10-3;
     }
-
     @GetMapping("/multiply/4/and/5")
-    @ResponseBody // tells it that it'll return
-    public long fourTimesFive(){
+    @ResponseBody
+    public int multiFourAndFive(){
         return 4*5;
     }
-
     @GetMapping("/divide/6/by/3")
-    @ResponseBody // tells it that it'll return
-    public long  sixDividedByThree(){
-//        int answer = 6/3;// if we wanted to return string and concatinate
-//        return "6 / 3 = "+answer;
+    @ResponseBody
+    public long divSixAndThree(){
         return 6/3;
     }
 
-    //used when we don't know any variables
-    @GetMapping("/multi/{x_value}/and/{y_value}")
+
+    //TODO alternative way so that value is returned
+    @GetMapping("/add/{x}/and/{y}")
     @ResponseBody
-    public int multiUserChoice(@PathVariable int x_value, @PathVariable int y_value){
-        return x_value * y_value;
+    public long addUserInput(@PathVariable int x, @PathVariable int y){
+        return x+y;
     }
-
-
+    @GetMapping("/subtract/{x}/and/{y}")
+    @ResponseBody
+    public long subtractUserInput(@PathVariable int x, @PathVariable int y){
+        return x-y;
+    }
+    @GetMapping("/multiply/{x}/and/{y}")
+    @ResponseBody
+    public long multiplyUserInput(@PathVariable int x, @PathVariable int y){
+        return x*y;
+    }
+    @GetMapping("/divide/{x}/and/{y}")
+    @ResponseBody
+    public long divideUserInput(@PathVariable int x, @PathVariable int y){
+        return x/y;
+    }
 }
