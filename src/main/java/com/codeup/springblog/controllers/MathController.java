@@ -76,23 +76,31 @@ public class MathController {
     //TODO alternative way so that value is returned
     @GetMapping("/add/{x}/and/{y}")
     @ResponseBody
-    public long addUserInput(@PathVariable int x, @PathVariable int y){
-        return x+y;
+    public String addUserInput(@PathVariable int x, @PathVariable int y){
+        String userInput = "We've added your values, the result is: ";
+        long answer = x+y;
+        return userInput + answer;
     }
     @GetMapping("/subtract/{x}/and/{y}")
     @ResponseBody
-    public long subtractUserInput(@PathVariable int x, @PathVariable int y){
-        return x-y;
+    public String subtractUserInput(@PathVariable int x, @PathVariable int y){
+        String userInput = "We've subtracted your values, the result is: ";
+        long answer = x-y;
+        return userInput + answer;
     }
     @GetMapping("/multiply/{x}/and/{y}")
     @ResponseBody
-    public long multiplyUserInput(@PathVariable int x, @PathVariable int y){
-        return x*y;
+    public String multiplyUserInput(@PathVariable int x, @PathVariable int y){
+        String userInput = "We've multiplied your values, the result is: ";
+        long answer = x*y;
+        return userInput + answer;
     }
     @GetMapping("/divide/{x}/and/{y}")
     @ResponseBody
-    public long divideUserInput(@PathVariable int x, @PathVariable int y){
-        return x/y;
+    public String divideUserInput(@PathVariable int x, @PathVariable int y){
+        String userInput = "We've divided your values, the result is: ";
+        long answer = x/y;
+        return userInput + answer;
     }
 }
 
