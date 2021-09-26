@@ -49,6 +49,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 //This controller should listen for requests for several routes that correspond to basic arithmetic operations
 // and produce the result of the arithmetic.
 
+@Controller
 public class MathController {
     @GetMapping("/add/3/and/4")
     @ResponseBody
@@ -94,3 +95,5 @@ public class MathController {
         return x/y;
     }
 }
+
+
