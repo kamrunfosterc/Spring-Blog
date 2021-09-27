@@ -1,6 +1,6 @@
 //package com.codeup.springblog.controllers;
 //
-//import com.codeup.polarisspringblog.models.Post;
+//import com.codeup.polarisspringblog.com.codeup.springblog.models.Post;
 //import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.GetMapping;
@@ -69,15 +69,12 @@
 //package com.codeup.polarisspringblog.controllers;
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.repos.AdRepository;
-import com.codeup.springblog.repos.PostRespository;
-import models.Ad;
-import models.Post;
+import com.codeup.springblog.repos.PostRepository;
+import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 //
 //    @Controller
@@ -126,14 +123,13 @@ import java.util.List;
 @Controller
 public class PostController {
 
-    private final PostRespository postDao;
+    private final PostRepository postDao;
 
-    public PostController(PostRespository postDao) {
+    public PostController(PostRepository postDao) {
         this.postDao = postDao;
     }
 
     @GetMapping("/posts")
-    @ResponseBody
     public String showPost(Model model){
         List<Post> allPosts = postDao.findAll();
         model.addAttribute("posts", allPosts);
@@ -141,7 +137,6 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
     public String showOnePost(@PathVariable long id, Model model){
         Post post = postDao.getById(id);
         model.addAttribute("postId", id);
