@@ -1,6 +1,8 @@
 package com.codeup.springblog.models;
 
+import org.springframework.stereotype.Controller;
 import javax.persistence.*;
+
 
 @Entity
 @Table(name = "ads")
@@ -35,6 +37,12 @@ public class Ad {
     public Ad() {
     }
 
+    public Ad(Long id, String title, String description, User owner) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.owner = owner;
+    }
 
 
     //getters and setters
@@ -62,5 +70,13 @@ public class Ad {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }
