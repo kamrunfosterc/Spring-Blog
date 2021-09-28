@@ -13,6 +13,7 @@ public class UserController {
     @Autowired
     private UserRepository userDao;
 
+
     @GetMapping("/user/create")
     public String createUserForm(){
         return "user/create";// ref file in directory bc in template
@@ -25,6 +26,7 @@ public class UserController {
     ){
         User userToDisplay = userDao.getByUsername(username);
         model.addAttribute("user", userToDisplay);
+
 
         return "user/displayAds";
     }
@@ -40,5 +42,6 @@ public class UserController {
         return "User Created";
     }
     //Anything having to do with users will go in here
+
 
 }

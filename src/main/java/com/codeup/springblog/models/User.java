@@ -14,32 +14,40 @@ public class User {
     private String username;
 
     @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
     private String password;
 
     @OneToMany (cascade = CascadeType.ALL, mappedBy = "owner") //from ad.java --> @ManyToOne private User owner;
-    private List<Ad> ads;
+    private List<Post> posts;
 
-    public User(){
-    }
 
-    public User(Long id, String username, String password) {
+//Constructors
+    public User(Long id, String username, String email, String password, List<Post> posts) {
         this.id = id;
         this.username = username;
+        this.email = email;
         this.password = password;
+        this.posts = posts;
     }
 
-
-    public User(String username, String password) {
+    public User(String username, String email, String password, List<Post> posts) {
         this.username = username;
+        this.email = email;
+        this.password = password;
+        this.posts = posts;
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
         this.password = password;
     }
 
-    public User(Long id, String username, String password, List<Ad> ads) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.ads = ads;
+    public User() {
     }
+
     //Getters and Setters
 
     public Long getId() {
@@ -58,6 +66,14 @@ public class User {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -66,11 +82,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Ad> getAds() {
-        return ads;
+    public List<Post> getPosts() {
+        return posts;
     }
 
-    public void setAds(List<Ad> ads) {
-        this.ads = ads;
+    public void setPosts(List<Post> posts) {
+        this.posts = posts;
     }
 }

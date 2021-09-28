@@ -70,8 +70,9 @@
 //package com.codeup.polarisspringblog.controllers;
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
 import org.springframework.stereotype.Controller;
+import com.codeup.springblog.models.Post;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.codeup.springblog.repos.PostRepository;
@@ -135,6 +136,7 @@ public class PostController {
     public String showPosts(Model model){
         List<Post> allPosts = new ArrayList<>();
 
+
         allPosts.add(new Post("post!", "post1 body"));
         allPosts.add(new Post("post@", "post2 body"));
 
@@ -170,6 +172,7 @@ public class PostController {
     public String createNewPost(){
         return "create a new post";
     }
+
 
     @GetMapping("/posts/edit/{id}")
     public String showEditPostForm(@PathVariable long id, Model model){
