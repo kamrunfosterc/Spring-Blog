@@ -70,7 +70,7 @@ public class User {
         return ads;
     }
 
-    public void setAds(Ad> ads) {
+    public void setAds(List<Ad> ads) {
         this.ads = ads;
     }
 }

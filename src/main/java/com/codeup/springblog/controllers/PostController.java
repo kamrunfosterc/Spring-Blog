@@ -64,17 +64,20 @@
 //    public String createPost(){
 //        return "create a new post";
 //    }
+
 //TODO OLD STUFF ABOVE COMMENTING OUT BC GIVING ISSUES
 
 //package com.codeup.polarisspringblog.controllers;
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.repos.PostRepository;
 import com.codeup.springblog.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.codeup.springblog.repos.PostRepository;
+//import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 //
 //    @Controller
@@ -124,29 +127,41 @@ import java.util.List;
 public class PostController {
 
     private final PostRepository postDao;
-
     public PostController(PostRepository postDao) {
         this.postDao = postDao;
     }
 
     @GetMapping("/posts")
-    public String showPost(Model model){
-        List<Post> allPosts = postDao.findAll();
+    public String showPosts(Model model){
+        List<Post> allPosts = new ArrayList<>();
+
+        allPosts.add(new Post("post!", "post1 body"));
+        allPosts.add(new Post("post@", "post2 body"));
+
         model.addAttribute("posts", allPosts);
         return "post/index";
     }
 
+//    @GetMapping("/posts")
+//    public String showPost(Model model){
+//        List<Post> allPosts = postDao.findAll();
+//        model.addAttribute("posts", allPosts);
+//        return "post/index";
+//    }
+
     @GetMapping("/posts/{id}")
-    public String showOnePost(@PathVariable long id, Model model){
-        Post post = postDao.getById(id);
+    public String showOnePost(@PathVariable int id, Model model){
+//        Post post = postDao.getById(id);
+        Post post = new Post("Fun title", "Fun body");
         model.addAttribute("postId", id);
         model.addAttribute("post", post);
+
         return "post/show";
     }
 
     @GetMapping("/posts/create")
     @ResponseBody
-    public String createPostForm(){
+    public String showCreatePostForm(){
         return "view the form for creating a post";
     }
 
