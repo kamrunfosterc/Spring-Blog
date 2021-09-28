@@ -19,9 +19,10 @@ public class Post {
 //        private String description;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id")//column that holds foreign key on post,
     private User owner;
 
+//    Post postToUpDate = postDao.getById(id);
     //POJO, plain old java object, no db associated
 
 //    private Long id;
@@ -30,6 +31,12 @@ public class Post {
 //    private String body;
 
     public Post() {
+    }
+
+    public Post(String title, String body, User owner) {
+        this.title = title;
+        this.body = body;
+        this.owner = owner;
     }
 
     public Post(long id, String title, String body) {
@@ -74,8 +81,15 @@ public class Post {
         this.id = id;
     }
 
+    public User getOwner() {
+        return owner;
+    }
 
-//    public String getDescription() {
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    //    public String getDescription() {
 //        return description;
 //    }
 //

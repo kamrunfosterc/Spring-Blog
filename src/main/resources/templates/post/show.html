@@ -10,11 +10,12 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div>
-    <div th:text="${postId}">Id</div>
+<!--    <div th:text="${postId}">Id</div>-->
     <div th:text="${post.title}">Title</div>
     <div th:text="${post.body}">Body</div>
-    <a th:action="@{|/posts/edit/${postId}|}">Edit Post</a>
+    <div>Created by: <span th:action="${post.owner.username}"></span></div>
 
+    <a th:href="@{|/posts/delete/${postId}|}">Edit Post</a>
     <form th:action="@{|/posts/delete/${postId}|}" th:method="post">
         <button type="submit">Delete</button>
     </form>

@@ -134,15 +134,18 @@ public class PostController {
 
     @GetMapping("/posts")
     public String showPosts(Model model){
-        List<Post> allPosts = new ArrayList<>();
+//        List<Post> allPosts = new ArrayList<>();
+        List<Post> allPosts = postDao.findAll();
 
 
-        allPosts.add(new Post("post!", "post1 body"));
-        allPosts.add(new Post("post@", "post2 body"));
+//        allPosts.add(new Post("post!", "post1 body"));
+//        allPosts.add(new Post("post@", "post2 body"));
 
         model.addAttribute("posts", allPosts);
+
         return "post/index";
     }
+
 
 //    @GetMapping("/posts")
 //    public String showPost(Model model){
@@ -152,25 +155,31 @@ public class PostController {
 //    }
 
     @GetMapping("/posts/{id}")
-    public String showOnePost(@PathVariable int id, Model model){
-//        Post post = postDao.getById(id);
-        Post post = new Post("Fun title", "Fun body");
+    public String showOnePost(@PathVariable long id, Model model){
+        Post post = postDao.getById(id);
+//        Post post = new Post("Fun title", "Fun body");
         model.addAttribute("postId", id);
         model.addAttribute("post", post);
-
         return "post/show";
     }
 
     @GetMapping("/posts/create")
     @ResponseBody
     public String showCreatePostForm(){
-        return "view the form for creating a post";
+//        return "view the form for creating a post";
+        return "post/create";
     }
 
     @PostMapping("/posts/create")
     @ResponseBody
-    public String createNewPost(){
-        return "create a new post";
+    //formally createNewPost
+    public String createPost(@RequestParam(name = "title") String title,
+                             @RequestParam(name = "body") String body
+    ){
+//        return "create a new post";
+        Post postToAdd = new Post(title, body);
+        postDao.save(postToAdd);
+        return "redirect:/posts";
     }
 
 
@@ -182,6 +191,7 @@ public class PostController {
     }
 
     @PostMapping("/posts/edit/{id}")
+    //editPost previous method name
     public String editPost(
             @PathVariable long id,
             @RequestParam(name = "title") String title,
@@ -190,7 +200,6 @@ public class PostController {
     ){
         Post editedPost = new Post(id, title, body);
         postDao.save(editedPost);
-
         return "redirect:/posts";
     }
 
@@ -198,9 +207,11 @@ public class PostController {
     public String deletePost(@PathVariable long id){
         Post postToDelete = postDao.getById(id);
         postDao.delete(postToDelete);
-
         return "redirect:/posts";
     }
+//    Post postToUpDate = postDao.getById(id);
+
+
 
 }
 
