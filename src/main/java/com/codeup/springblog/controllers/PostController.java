@@ -70,8 +70,8 @@
 //package com.codeup.polarisspringblog.controllers;
 package com.codeup.springblog.controllers;
 
-import com.codeup.springblog.models.User;
 import com.codeup.springblog.repos.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import com.codeup.springblog.models.Post;
 import org.springframework.ui.Model;
@@ -79,7 +79,6 @@ import org.springframework.web.bind.annotation.*;
 import com.codeup.springblog.repos.PostRepository;
 //import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 //
 //    @Controller
@@ -130,10 +129,12 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -179,6 +180,11 @@ public class PostController {
     public String createPost(@ModelAttribute Post postToAdd){
         postToAdd.setOwner(userDao.getById(1L));
 
+        emailService.prepareAndSend(
+                postToAdd,
+                "new post",
+                "you created a new post"
+        );
         postDao.save(postToAdd);
         return "redirect:/posts";
     }
@@ -199,7 +205,7 @@ public class PostController {
     @GetMapping("/posts/edit/{id}")
     public String showEditPostForm(@PathVariable long id, Model model){
         Post postToEdit = postDao.getById(id);
-//        model.addAttribute("id", postToEdit.getId());
+//        model.addAttribute("id", postToEdit.getId());//todo old
         model.addAttribute("postToEdit", postToEdit);
         return"post/edit";
     }
@@ -207,14 +213,15 @@ public class PostController {
     @PostMapping("/posts/edit/{id}")
     //editPost previous method name
     public String editPost(
-//            @PathVariable long id,//todo old
+            @PathVariable long id,
 //            @RequestParam(name = "title") String title,//todo old
 //            @RequestParam(name = "body") String body//todo old
             @ModelAttribute Post updatedPost
 
     ){
 //        Post editedPost = new Post(id, title, body);//todo old
-        updatedPost.setOwner(1L);
+        updatedPost.setId(id);
+        updatedPost.setOwner(userDao.getById(1L));
         postDao.save(updatedPost);
 //        postDao.save(editedPost);//todo old
         return "redirect:/posts";

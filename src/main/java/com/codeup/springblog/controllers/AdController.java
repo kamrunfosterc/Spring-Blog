@@ -5,6 +5,7 @@ import com.codeup.springblog.repos.AdRepository;
 import com.codeup.springblog.models.Ad;
 import com.codeup.springblog.models.Post;
 import com.codeup.springblog.repos.UserRepository;
+import com.codeup.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,16 +17,16 @@ import java.util.List;
 public class AdController {
 //
     private final AdRepository adDao;
-
     private final UserRepository userDao;
+    private final EmailService emailService;
 
-    public AdController(AdRepository adDao, UserRepository userDao) {
-       this.adDao = adDao;
-       this.userDao = userDao;
+    public AdController(AdRepository adDao, UserRepository userDao, EmailService emailService) {
+        this.adDao = adDao;
+        this.userDao = userDao;
+        this.emailService = emailService;
     }
 
-
-     @GetMapping(path = "/ads")
+    @GetMapping(path = "/ads")
      public String showAds(Model model){
 
         List<Ad> adsToShow = adDao.findAll();
