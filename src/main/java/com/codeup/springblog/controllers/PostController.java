@@ -163,13 +163,13 @@ public class PostController {
     public String showOnePost(@PathVariable long id, Model model){
         Post post = postDao.getById(id);
 //        Post post = new Post("Fun title", "Fun body");
-        model.addAttribute("postId", id);
+//        model.addAttribute("postId", id);
         model.addAttribute("post", post);
         return "post/show";
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
+//    @ResponseBody
     public String showCreatePostForm(Model model){
 //        return "view the form for creating a post";
         model.addAttribute("post", new Post());
