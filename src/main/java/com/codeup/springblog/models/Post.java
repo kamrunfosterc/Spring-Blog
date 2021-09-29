@@ -25,11 +25,7 @@ public class Post {
 //    Post postToUpDate = postDao.getById(id);
     //POJO, plain old java object, no db associated
 
-//    private Long id;
-//
-//    private String title;
-//    private String body;
-
+    //constructors
     public Post() {
     }
 
@@ -50,13 +46,8 @@ public class Post {
         this.body = body;
     }
 
-//    public Post(String title, String body, String description) {
-//        this.title = title;
-//        this.body = body;
-//        this.description = description;
-//    }
 
-
+// getters and setters
     public String getTitle() {
         return title;
     }
