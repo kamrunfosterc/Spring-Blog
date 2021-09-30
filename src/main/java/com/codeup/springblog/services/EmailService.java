@@ -32,5 +32,4 @@ public class EmailService {
                 System.err.println(ex.getMessage());
             }
         }
-
 }
