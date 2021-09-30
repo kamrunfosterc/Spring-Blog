@@ -70,8 +70,10 @@
 //package com.codeup.polarisspringblog.controllers;
 package com.codeup.springblog.controllers;
 
+import com.codeup.springblog.models.User;
 import com.codeup.springblog.repos.UserRepository;
 import com.codeup.springblog.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import com.codeup.springblog.models.Post;
 import org.springframework.ui.Model;
@@ -178,7 +180,9 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post postToAdd){
-        postToAdd.setOwner(userDao.getById(1L));
+//        postToAdd.setOwner(userDao.getById(1L));
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        postToAdd.setOwner(loggedInUser);
 
         emailService.prepareAndSend(
                 postToAdd,
@@ -221,7 +225,10 @@ public class PostController {
     ){
 //        Post editedPost = new Post(id, title, body);//todo old
         updatedPost.setId(id);
-        updatedPost.setOwner(userDao.getById(1L));
+
+        updatedPost.setOwner(userDao.getById(1L));// old way hard code
+
+
         postDao.save(updatedPost);
 //        postDao.save(editedPost);//todo old
         return "redirect:/posts";

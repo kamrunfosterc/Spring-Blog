@@ -5,7 +5,7 @@
     <title>Edit Post</title>
 </head>
 <body>
-
+<nav th:replace="partials/navbar :: navbar"></nav>
     <form th:action="@{|/posts/edit/${id}|}" th:method="post" th:object="${postToEdit}">
 <!--        <input type="hidden" th:field="*{id}"> leaves us vulnerable -->
       <input type="text" name="title" th:field="*{title}" placeholder="title">
