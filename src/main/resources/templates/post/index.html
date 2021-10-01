@@ -14,7 +14,7 @@
 <!--    anything we put in here is only avail to the user-->
 <!--    User ID: <h3>Welcome, <span th:text="${#authentication.principal.username}"/></h3>-->
     <!--    Email: <span th:text="${#authentication.principal.email}"/>-->
-    Username: <h3>Welcome, <span th:text="${#authentication.principal.username}"/></h3>
+    <p>Username: <h3>Welcome, <span th:text="${#authentication.principal.username}"/></h3></p>
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
 <!--            <div class="col-md-4">-->
@@ -22,7 +22,7 @@
 <!--            </div>-->
             <div class="col-md-8">
                 <div class="card-body" th:each="post : ${posts}">
-                    <img src="https://i.pinimg.com/736x/4b/f1/d3/4bf1d36cdb4993fcd01769c6161d79ca.jpg" with="200px" height="200px" class="card-img" alt="jack-o-lantern">
+                    <img src="https://i.pinimg.com/736x/4b/f1/d3/4bf1d36cdb4993fcd01769c6161d79ca.jpg" with="125px" height="125px" class="card-img" alt="jack-o-lantern">
                     <h5 class="card-title" th:text="'Title: ' + ${post.title}">Card title</h5>
                     <p class="card-text" th:text="'About: '+ ${post.body}">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <p class="card-text" th:text="'credit: ' + ${post.owner.username}"><small class="text-muted">Last updated 3 mins ago</small></p>
