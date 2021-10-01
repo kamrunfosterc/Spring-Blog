@@ -1,25 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+l
 <nav th:fragment="navbar" style="background-color: cornflowerblue">
 <!--    <h1>Spring Blog</h1>-->
     <ul>
         <!-- More links here... -->
         <div sec:authorize="isAuthenticated()">
-            <form th:action="@{/posts/create}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Create Post</button>
-            </form>
-            <form th:action="@{/posts}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Profile</button>
-            </form>
-            <form th:action="@{/posts/edit}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Edit</button>
-            </form>
-            <form th:action="@{/posts/delete}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Delete</button>
-            </form>
-            <form th:action="@{/logout}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-            </form>
+<!--            <form th:action="@{/posts/create}" th:method="get">-->
+<!--                <button class="btn-link btn" style="margin-top: 8px">Create Post</button>-->
+<!--            </form>-->
+<!--            <form th:action="@{/posts}" th:method="get">-->
+<!--                <button class="btn-link btn" style="margin-top: 8px">Profile</button>-->
+<!--            </form>-->
+<!--            <form th:action="@{/posts/edit}" th:method="get">-->
+<!--                <button class="btn-link btn" style="margin-top: 8px">Edit</button>-->
+<!--            </form>-->
+<!--            <form th:action="@{/posts/delete}" th:method="get">-->
+<!--                <button class="btn-link btn" style="margin-top: 8px">Delete</button>-->
+<!--            </form>-->
+<!--            <form th:action="@{/logout}" th:method="post">-->
+<!--                <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+<!--            </form>-->
+<!--            TODO 2nd logged in setup option-->
+            <ul>
+                <li><button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Create Post</a></button></li>
+                <li><button class="btn btn-outline-success"><a th:href="@{/posts}">Profile</a></button></li>
+                <li>
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                    </form>
+                </li>
+            </ul>
+
+<!--            <button class="btn btn-outline-primary"><a th:href="@{/posts/create}">Create Post</a></button>-->
+<!--            <button class="btn btn-outline-success"><a th:href="@{/posts}">Profile</a></button>-->
+<!--            <form th:action="@{/logout}" th:method="post">-->
+<!--                <button class="btn-link btn" style="margin-top: 8px">Logout</button>-->
+<!--            </form>-->
+
         </div>
 
         <!-- IF NOT LOGGED IN BELOW -->
